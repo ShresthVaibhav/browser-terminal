@@ -68,8 +68,10 @@ term.onData(data => {
 });
 
 term.attachCustomKeyEventHandler((e) => {
-  if (e.type === 'keydown' && e.key.length === 1 && /[0-9!@#$%^&*()]/.test(e.key) && !e.ctrlKey && !e.altKey && !e.metaKey) {
-    if (ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ type: 'input', data: e.key }));
+  if (e.key.length === 1 && /[0-9!@#$%^&*()]/.test(e.key) && !e.ctrlKey && !e.altKey && !e.metaKey) {
+    if (e.type === 'keydown' && ws.readyState === WebSocket.OPEN) {
+      ws.send(JSON.stringify({ type: 'input', data: e.key }));
+    }
     return false;
   }
   return true;
