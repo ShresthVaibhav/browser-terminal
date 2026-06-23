@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terminal — Login</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0d1117;
+      color: #c9d1d9;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 380px;
+    }
+    h1 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem; color: #e6edf3; }
+    .subtitle { font-size: 0.85rem; color: #8b949e; margin-bottom: 1.5rem; }
+    label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.4rem; color: #c9d1d9; }
+    input[type="password"] {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      color: #c9d1d9;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    input[type="password"]:focus { border-color: #58a6ff; }
+    button {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 0.6rem;
+      background: #238636;
+      border: 1px solid #2ea043;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    button:hover:not(:disabled) { background: #2ea043; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .msg { margin-top: 1rem; padding: 0.65rem 0.75rem; border-radius: 6px; font-size: 0.875rem; display: none; }
+    .msg.info    { background: #1f3a5f; border: 1px solid #388bfd; color: #79c0ff; }
+    .msg.error   { background: #3d1c1c; border: 1px solid #f85149; color: #ff7b72; }
+    .msg.success { background: #1a3a1f; border: 1px solid #2ea043; color: #56d364; }
+    .error-banner { background: #3d1c1c; border: 1px solid #f85149; color: #ff7b72; padding: 0.65rem 0.75rem; border-radius: 6px; font-size: 0.875rem; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Browser Terminal</h1>
+    <p class="subtitle">Secure access</p>
+    <div id="error-banner" class="error-banner" style="display:none"></div>
+    <form id="login-form">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" autofocus autocomplete="current-password" required>
+      <button type="submit" id="submit-btn">Continue</button>
+    </form>
+    <div id="msg" class="msg"></div>
+  </div>
+  <script src="/login.js"></script>
+</body>
+</html>

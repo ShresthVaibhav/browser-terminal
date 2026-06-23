@@ -1,0 +1,18 @@
+[Unit]
+Description=Browser Terminal
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/opt/browser-terminal
+EnvironmentFile=/opt/browser-terminal/.env
+ExecStart=/usr/bin/node /opt/browser-terminal/server.js
+Restart=always
+RestartSec=5
+KillMode=process
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

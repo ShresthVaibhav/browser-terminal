@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browser Terminal</title>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xterm-addon-web-links@0.9.0/lib/xterm-addon-web-links.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #0d1117; }
+    #topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.4rem 1rem;
+      background: #161b22;
+      border-bottom: 1px solid #30363d;
+      font-size: 0.8rem;
+      color: #8b949e;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    #topbar span strong { color: #58a6ff; }
+    #logout-btn {
+      padding: 0.3rem 0.75rem;
+      background: transparent;
+      border: 1px solid #f85149;
+      border-radius: 4px;
+      color: #f85149;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    #logout-btn:hover { background: #3d1c1c; }
+    #terminal-container { height: calc(100vh - 36px); padding: 4px; }
+    #overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+    #overlay.show { display: flex; }
+    #overlay-card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 2rem;
+      max-width: 360px;
+      text-align: center;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+    #overlay-card h2 { color: #f85149; margin-bottom: 0.75rem; }
+    #overlay-card p  { color: #8b949e; font-size: 0.875rem; margin-bottom: 1.25rem; }
+    #overlay-card a  { display: inline-block; padding: 0.5rem 1.25rem; background: #238636; border-radius: 6px; color: #fff; text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div id="topbar">
+    <span>Browser Terminal &mdash; <strong>connected</strong></span>
+    <button id="logout-btn">Logout</button>
+  </div>
+  <div id="terminal-container"></div>
+  <div id="overlay">
+    <div id="overlay-card">
+      <h2 id="overlay-title">Session Ended</h2>
+      <p  id="overlay-msg">Your session has expired.</p>
+      <a href="/">Log in again</a>
+    </div>
+  </div>
+  <script src="/terminal.js"></script>
+</body>
+</html>
