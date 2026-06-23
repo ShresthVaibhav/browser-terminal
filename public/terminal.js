@@ -1,7 +1,8 @@
 'use strict';
 
 const term = new Terminal({
-  cursorBlink: true,
+  cursorBlink:    true,
+  copyOnSelect:   true,
   fontFamily:  'JetBrains Mono, Fira Code, Cascadia Code, Consolas, monospace',
   fontSize:    14,
   theme: {
@@ -65,6 +66,13 @@ ws.addEventListener('message', evt => {
 
 term.onData(data => {
   if (ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ type: 'input', data }));
+});
+
+window.addEventListener('paste', e => {
+  const text = e.clipboardData?.getData('text');
+  if (text && ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify({ type: 'input', data: text }));
+  }
 });
 
 term.attachCustomKeyEventHandler((e) => {
