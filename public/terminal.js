@@ -38,7 +38,10 @@ ws.addEventListener('open', () => {
 
 ws.addEventListener('message', evt => {
   let msg;
-  try { msg = JSON.parse(evt.data); } catch {
+  try {
+    msg = JSON.parse(evt.data);
+    if (typeof msg !== 'object' || msg === null) throw new Error();
+  } catch {
     term.write(evt.data);
     return;
   }
